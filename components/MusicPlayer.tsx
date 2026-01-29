@@ -12,9 +12,10 @@ import {
 
 interface MusicPlayerProps {
   audioSrc?: string;
+  autoPlay?: boolean;
 }
 
-export default function MusicPlayer({ audioSrc }: MusicPlayerProps) {
+export default function MusicPlayer({ audioSrc, autoPlay = false }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
@@ -42,6 +43,24 @@ export default function MusicPlayer({ audioSrc }: MusicPlayerProps) {
       audio.removeEventListener("pause", handlePause);
     };
   }, [audioSrc]);
+
+  // 进入相册时尝试自动播放（需用户先有交互，如点击 Enter Our Album）
+  useEffect(() => {
+    if (!autoPlay || !audioSrc) return;
+
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
+        // 浏览器可能阻止自动播放，用户可手动点击播放
+        if (err.name !== "AbortError") {
+          console.debug("Autoplay prevented:", err.message);
+        }
+      });
+    }
+  }, [autoPlay, audioSrc]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -80,7 +99,7 @@ export default function MusicPlayer({ audioSrc }: MusicPlayerProps) {
 
   return (
     <>
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop autoPlay={autoPlay}>
         <source src={audioSrc} type="audio/mpeg" />
       </audio>
 

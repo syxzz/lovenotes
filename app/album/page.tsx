@@ -187,7 +187,7 @@ export default function AlbumPage() {
         isDeleting={isDeleting}
       />
 
-      <MusicPlayer audioSrc={MUSIC_CONFIG.audioSrc} />
+      <MusicPlayer audioSrc={MUSIC_CONFIG.audioSrc} autoPlay />
     </div>
   );
 }
