@@ -6,7 +6,7 @@ import PhotoCard from "./PhotoCard";
 interface MasonryGridProps {
   photos: Photo[];
   onPhotoClick: (photo: Photo, index: number) => void;
-  onPhotoDelete: (photo: Photo) => void;
+  onPhotoDelete?: (photo: Photo) => void;
 }
 
 export default function MasonryGrid({ photos, onPhotoClick, onPhotoDelete }: MasonryGridProps) {
@@ -17,7 +17,7 @@ export default function MasonryGrid({ photos, onPhotoClick, onPhotoDelete }: Mas
           <PhotoCard
             photo={photo}
             onClick={() => onPhotoClick(photo, index)}
-            onDelete={() => onPhotoDelete(photo)}
+            onDelete={onPhotoDelete ? () => onPhotoDelete(photo) : undefined}
             index={index}
           />
         </div>

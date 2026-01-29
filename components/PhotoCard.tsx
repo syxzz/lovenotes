@@ -9,7 +9,7 @@ import { IoTrash } from "react-icons/io5";
 interface PhotoCardProps {
   photo: Photo;
   onClick: () => void;
-  onDelete: () => void;
+  onDelete?: () => void;
   index: number;
 }
 
@@ -18,7 +18,7 @@ export default function PhotoCard({ photo, onClick, onDelete, index }: PhotoCard
 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDelete();
+    onDelete?.();
   };
 
   return (
@@ -45,14 +45,16 @@ export default function PhotoCard({ photo, onClick, onDelete, index }: PhotoCard
           onLoad={() => setIsLoaded(true)}
         />
 
-        {/* Delete Button */}
-        <button
-          onClick={handleDeleteClick}
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-600 z-10"
-          aria-label="Delete photo"
-        >
-          <IoTrash className="w-4 h-4" />
-        </button>
+        {/* Delete Button - only show when onDelete is provided */}
+        {onDelete && (
+          <button
+            onClick={handleDeleteClick}
+            className="absolute top-2 right-2 w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-600 z-10"
+            aria-label="Delete photo"
+          >
+            <IoTrash className="w-4 h-4" />
+          </button>
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">

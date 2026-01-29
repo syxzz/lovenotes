@@ -1,127 +1,43 @@
 import { Photo } from "@/types";
 
-export const photos: Photo[] = [
-  {
-    id: "1",
-    url: "https://images.unsplash.com/photo-1502301103665-0b95cc738daf?w=800",
-    caption: "Our first adventure together in the mountains",
-    date: "2024-03-15",
-    category: "Travel",
-    orientation: "landscape"
-  },
-  {
-    id: "2",
-    url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600",
-    caption: "Morning coffee and your beautiful smile",
-    date: "2024-04-02",
-    category: "Daily Life",
-    orientation: "portrait"
-  },
-  {
-    id: "3",
-    url: "https://images.unsplash.com/photo-1464047736614-af63643285bf?w=800",
-    caption: "Sunset at the beach, holding hands",
-    date: "2024-05-20",
-    category: "Special Moments",
-    orientation: "landscape"
-  },
-  {
-    id: "4",
-    url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-    caption: "Your birthday celebration with all our friends",
-    date: "2024-06-10",
-    category: "Celebrations",
-    orientation: "portrait"
-  },
-  {
-    id: "5",
-    url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800",
-    caption: "Exploring the city streets together",
-    date: "2024-07-08",
-    category: "Travel",
-    orientation: "landscape"
-  },
-  {
-    id: "6",
-    url: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600",
-    caption: "Lazy Sunday morning in bed",
-    date: "2024-07-22",
-    category: "Daily Life",
-    orientation: "portrait"
-  },
-  {
-    id: "7",
-    url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800",
-    caption: "The moment you said yes",
-    date: "2024-08-14",
-    category: "Special Moments",
-    orientation: "landscape"
-  },
-  {
-    id: "8",
-    url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600",
-    caption: "Our anniversary dinner under the stars",
-    date: "2024-09-05",
-    category: "Celebrations",
-    orientation: "portrait"
-  },
-  {
-    id: "9",
-    url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-    caption: "Hiking through the forest trails",
-    date: "2024-09-18",
-    category: "Travel",
-    orientation: "landscape"
-  },
-  {
-    id: "10",
-    url: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600",
-    caption: "Cooking dinner together in our kitchen",
-    date: "2024-10-03",
-    category: "Daily Life",
-    orientation: "portrait"
-  },
-  {
-    id: "11",
-    url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800",
-    caption: "Dancing in the rain, just us two",
-    date: "2024-10-20",
-    category: "Special Moments",
-    orientation: "landscape"
-  },
-  {
-    id: "12",
-    url: "https://images.unsplash.com/photo-1481653125770-b78c206c59d4?w=600",
-    caption: "New Year's Eve countdown kiss",
-    date: "2024-12-31",
-    category: "Celebrations",
-    orientation: "portrait"
-  },
-  {
-    id: "13",
-    url: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800",
-    caption: "Road trip to the countryside",
-    date: "2025-01-10",
-    category: "Travel",
-    orientation: "landscape"
-  },
-  {
-    id: "14",
-    url: "https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600",
-    caption: "Reading books together on the couch",
-    date: "2025-01-25",
-    category: "Daily Life",
-    orientation: "portrait"
-  },
-  {
-    id: "15",
-    url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800",
-    caption: "The first time you told me you loved me",
-    date: "2024-02-14",
-    category: "Special Moments",
-    orientation: "landscape"
-  }
+const IMAGE_FILES = [
+  "v2-1bd3131262a032f05ccd15a06cffeb10_1440w.jpg",
+  "v2-1d60df22fbc3d4e60f90d4d8dd8748ca~resize_1440_q75.jpg",
+  "v2-2f41addf23ab7036346ed25d336bf522~resize_1440_q75.jpg",
+  "v2-3a8909a995aac2983374c0e4dfe9f50b~resize_1440_q75.jpg",
+  "v2-40124c5e0c4f08c1efb185a3b2d1117c~resize_1440_q75.jpg",
+  "v2-53635f22e61cd927a37d4fb2a0c1c3e1~resize_1440_q75.jpg",
+  "v2-82f92cddd96fffe7a6ea337880ab521d~resize_1440_q75.jpg",
+  "v2-8d27fb142c6fa96483522922f398b871~resize_1440_q75.jpg",
+  "v2-95ef520c889268816f9a95981d5b18fb_1440w.jpeg",
+  "v2-a6b2a03dc9b59382b18d9732fa288f50~resize_1440_q75.jpg",
+  "v2-c62681fd66ab5c32a1d325d3c9b801c0~resize_1440_q75.jpg",
+  "v2-dee58aa215c75bd163c8b4939f0a716a~resize_1440_q75.jpg"
 ];
+
+const CAPTIONS = [
+  "A quiet moment worth remembering",
+  "Every day with you feels special",
+  "Simple joys of everyday life",
+  "Little moments, big memories",
+  "Finding beauty in the ordinary",
+  "Together in our cozy corner",
+  "Another day, another blessing",
+  "Life's small pleasures",
+  "Our daily rhythm",
+  "Warmth and comfort at home",
+  "Cherishing the present",
+  "Grateful for today"
+];
+
+export const photos: Photo[] = IMAGE_FILES.map((filename, index) => ({
+  id: String(index + 1),
+  url: `/images/${filename}`,
+  caption: CAPTIONS[index % CAPTIONS.length],
+  date: "2025-01-29",
+  category: "Daily Life" as const,
+  orientation: index % 3 === 0 ? "portrait" : "landscape"
+}));
 
 export const categories = [
   { label: "All", value: "All" as const },

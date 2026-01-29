@@ -62,13 +62,24 @@ export const usePhotos = (): UsePhotosReturn => {
       }));
 
       // Combine and sort by date (newest first)
-      const allPhotos = [...activeStaticPhotos, ...userPhotosFormatted].sort(
+      let allPhotos = [...activeStaticPhotos, ...userPhotosFormatted].sort(
         (a, b) => {
           const dateA = new Date(a.date).getTime();
           const dateB = new Date(b.date).getTime();
           return dateB - dateA;
         }
       );
+
+      // 当结果为空但存在静态图片时，使用全部静态图片（处理 IndexedDB 异常或首次加载）
+      if (allPhotos.length === 0 && staticPhotos.length > 0) {
+        allPhotos = [...staticPhotos, ...userPhotosFormatted].sort(
+          (a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+            return dateB - dateA;
+          }
+        );
+      }
 
       setPhotos(allPhotos);
     } catch (err) {
