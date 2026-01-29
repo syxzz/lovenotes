@@ -21,7 +21,9 @@ export default function TypewriterIntro({
 
   useEffect(() => {
     if (currentParagraph >= text.length) {
-      setIsComplete(true);
+      setTimeout(() => {
+        setIsComplete(true);
+      }, 500);
       return;
     }
 
@@ -43,7 +45,9 @@ export default function TypewriterIntro({
 
       return () => clearTimeout(timeout);
     } else {
-      setIsComplete(true);
+      setTimeout(() => {
+        setIsComplete(true);
+      }, 500);
     }
   }, [currentChar, currentParagraph, text, typingSpeed]);
 
