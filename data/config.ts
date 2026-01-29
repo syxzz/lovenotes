@@ -6,7 +6,7 @@
  */
 // 默认背景音乐 URL，可替换为 Mixkit/Pixabay 等免费浪漫音乐直链
 const DEFAULT_BGM_URL =
-  "https://cdn.pixabay.com/audio/2022/05/27/audio_306c1e2c2e.mp3";
+  "/audio/bgm.mp3"
 
 export const MUSIC_CONFIG = {
   audioSrc: process.env.NEXT_PUBLIC_BGM_URL || DEFAULT_BGM_URL
