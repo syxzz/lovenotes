@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
@@ -17,11 +17,24 @@ export default function TypewriterIntro({
   const [currentParagraph, setCurrentParagraph] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   const router = useRouter();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Show hint after 2 seconds
+  useEffect(() => {
+    const hintTimeout = setTimeout(() => {
+      if (!isComplete) {
+        setShowHint(true);
+      }
+    }, 2000);
+
+    return () => clearTimeout(hintTimeout);
+  }, [isComplete]);
 
   useEffect(() => {
     if (currentParagraph >= text.length) {
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsComplete(true);
       }, 500);
       return;
@@ -30,33 +43,54 @@ export default function TypewriterIntro({
     const currentText = text[currentParagraph];
 
     if (currentChar < currentText.length) {
-      const timeout = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setDisplayedText(prev => prev + currentText[currentChar]);
         setCurrentChar(prev => prev + 1);
       }, typingSpeed);
 
-      return () => clearTimeout(timeout);
+      return () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      };
     } else if (currentParagraph < text.length - 1) {
-      const timeout = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setDisplayedText(prev => prev + "\n\n");
         setCurrentParagraph(prev => prev + 1);
         setCurrentChar(0);
       }, 500);
 
-      return () => clearTimeout(timeout);
+      return () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      };
     } else {
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsComplete(true);
       }, 500);
     }
   }, [currentChar, currentParagraph, text, typingSpeed]);
+
+  const handleSkip = () => {
+    if (isComplete) return;
+
+    // Clear any pending timeouts
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Show all text immediately
+    setDisplayedText(text.join("\n\n"));
+    setIsComplete(true);
+  };
 
   const handleEnterAlbum = () => {
     router.push("/album");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-cream via-background to-blush">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-cream via-background to-blush"
+      onClick={handleSkip}
+      style={{ cursor: isComplete ? "default" : "pointer" }}
+    >
       <div className="max-w-3xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,9 +101,22 @@ export default function TypewriterIntro({
           <div className="prose prose-lg max-w-none">
             <div className="text-foreground leading-relaxed whitespace-pre-wrap font-serif text-lg md:text-xl">
               {displayedText}
-              <span className="inline-block w-0.5 h-6 bg-rose ml-1 animate-pulse" />
+              {!isComplete && (
+                <span className="inline-block w-0.5 h-6 bg-rose ml-1 animate-pulse" />
+              )}
             </div>
           </div>
+
+          {!isComplete && showHint && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              transition={{ duration: 0.5 }}
+              className="text-center mt-6 text-foreground/50 text-sm"
+            >
+              Click anywhere to skip
+            </motion.p>
+          )}
 
           {isComplete && (
             <motion.div
