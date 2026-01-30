@@ -105,7 +105,7 @@ export default function AlbumPage() {
           className="text-center mb-12"
         >
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground mb-4">
-            Our Love Story
+            🐟 Story
           </h1>
           <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
             A collection of moments that define us, captured in time and
