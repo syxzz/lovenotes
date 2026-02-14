@@ -30,9 +30,11 @@ const CAPTIONS = [
   "Grateful for today"
 ];
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const photos: Photo[] = IMAGE_FILES.map((filename, index) => ({
   id: String(index + 1),
-  url: `/images/${filename}`,
+  url: `${base}/images/${filename}`,
   caption: CAPTIONS[index % CAPTIONS.length],
   date: "2025-01-29",
   category: "Daily Life" as const,

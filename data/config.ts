@@ -4,9 +4,10 @@
  * 2. 将 MP3 放入 public/audio/bgm.mp3 并设置 NEXT_PUBLIC_BGM_URL=/audio/bgm.mp3
  * 3. 或修改下方 DEFAULT_BGM_URL 为任意可访问的 MP3 直链
  */
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 // 默认背景音乐 URL，可替换为 Mixkit/Pixabay 等免费浪漫音乐直链
-const DEFAULT_BGM_URL =
-  "/audio/bgm.mp3"
+const DEFAULT_BGM_URL = `${base}/audio/bgm.mp3`;
 
 export const MUSIC_CONFIG = {
   audioSrc: process.env.NEXT_PUBLIC_BGM_URL || DEFAULT_BGM_URL

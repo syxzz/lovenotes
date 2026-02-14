@@ -23,6 +23,36 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## 部署到 GitHub Pages
+
+项目已配置为静态导出并可通过 GitHub Actions 自动部署。
+
+### 1. 在 GitHub 启用 Pages
+
+1. 打开仓库 **Settings** → **Pages**
+2. 在 **Build and deployment** 里，**Source** 选择 **GitHub Actions**
+
+### 2. 推送代码触发部署
+
+推送或合并到 `main` 分支后，Actions 会自动构建并部署。完成后访问：
+
+- **项目站点的典型地址**：`https://<你的用户名>.github.io/lovenotes/`
+
+### 3. 若仓库名不是 `lovenotes`
+
+在 `next.config.ts` 中把 `basePath` 和 `assetPrefix` 里的 `/lovenotes` 改成 `/你的仓库名`，否则静态资源路径会 404。
+
+### 本地验证
+
+```bash
+pnpm build    # 生成 out/
+pnpm preview  # 启动本地静态服务，浏览器打开 http://localhost:3000 会自动跳到应用
+```
+
+（因配置了 basePath，直接 `npx serve out` 打开 http://localhost:3000 会空白；用 `pnpm preview` 会按 GitHub Pages 的路径模拟。）
+
+---
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
