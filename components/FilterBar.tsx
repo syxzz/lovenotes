@@ -24,10 +24,10 @@ export default function FilterBar({
           transition={{ duration: 0.3, delay: index * 0.05 }}
           onClick={() => onCategoryChange(category.value)}
           className={`
-            px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300
+            px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 cursor-pointer!
             ${
               activeCategory === category.value
-                ? "bg-gradient-to-r from-rose to-dark-rose text-white shadow-lg scale-105"
+                ? "bg-linear-to-r from-rose to-dark-rose text-white shadow-lg scale-105"
                 : "bg-white text-foreground hover:bg-soft-gray hover:scale-105 shadow-md"
             }
           `}

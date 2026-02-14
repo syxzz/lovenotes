@@ -30,4 +30,8 @@ body {
   font-family: var(--font-sans);
 }
 
+button {
+  cursor: pointer;
+}
+
 

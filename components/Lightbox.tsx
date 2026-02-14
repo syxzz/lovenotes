@@ -71,7 +71,7 @@ export default function Lightbox({
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
+          className="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 cursor-pointer!"
           aria-label="Close lightbox"
         >
           <IoClose size={32} />
@@ -83,7 +83,7 @@ export default function Lightbox({
               e.stopPropagation();
               onNavigate("prev");
             }}
-            className="absolute left-4 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 hidden md:block"
+            className="absolute left-4 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 hidden md:block cursor-pointer!"
             aria-label="Previous photo"
           >
             <IoChevronBack size={32} />
@@ -96,7 +96,7 @@ export default function Lightbox({
               e.stopPropagation();
               onNavigate("next");
             }}
-            className="absolute right-4 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 hidden md:block"
+            className="absolute right-4 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200 hidden md:block cursor-pointer!"
             aria-label="Next photo"
           >
             <IoChevronForward size={32} />
@@ -135,7 +135,7 @@ export default function Lightbox({
                 day: "numeric"
               })}
             </p>
-            <p className="text-white/50 text-sm mt-2">
+            <p className="text-white/50 text-sm bottom-0">
               {currentIndex + 1} / {photos.length}
             </p>
           </div>
@@ -149,6 +149,7 @@ export default function Lightbox({
                 onNavigate("prev");
               }}
               className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
+              style={{ cursor: "pointer" }}
               aria-label="Previous photo"
             >
               <IoChevronBack size={24} />
@@ -161,6 +162,7 @@ export default function Lightbox({
                 onNavigate("next");
               }}
               className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
+              style={{ cursor: "pointer" }}
               aria-label="Next photo"
             >
               <IoChevronForward size={24} />

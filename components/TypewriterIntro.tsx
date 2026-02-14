@@ -127,7 +127,7 @@ export default function TypewriterIntro({
             >
               <button
                 onClick={handleEnterAlbum}
-                className="px-8 py-4 bg-gradient-to-r from-rose to-dark-rose text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-dark-rose hover:to-rose"
+                className="px-8 py-4 bg-linear-to-r from-rose to-dark-rose text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-dark-rose hover:to-rose cursor-pointer!"
               >
                 Enter Our Album
               </button>
