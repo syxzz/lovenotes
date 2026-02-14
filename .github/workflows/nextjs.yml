@@ -21,11 +21,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 1️⃣ 安装 pnpm
+      # 1️⃣ 安装 pnpm（版本需与 lockfileVersion 一致）
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       # 2️⃣ 安装 Node
       - name: Setup Node
